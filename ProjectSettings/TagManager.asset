@@ -6,6 +6,9 @@ TagManager:
   tags:
   - player
   - enemySpawn
+  - mouseHole
+  - Win
+  - Ground
   layers:
   - Default
   - TransparentFX

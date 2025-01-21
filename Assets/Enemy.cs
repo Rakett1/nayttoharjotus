@@ -8,12 +8,13 @@ public class Enemy : MonoBehaviour
 {
     public GameObject player;
     public float speed;
+    public GameObject LoseScreen;
 
     float distance;
 
     private void Start()
     {
-        
+        LoseScreen.SetActive(false);
     }
     private void Update()
     {
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (collision.tag == ("player"))
         {
             Destroy(player);
+            LoseScreen.SetActive(true);
         }
     }
 }
