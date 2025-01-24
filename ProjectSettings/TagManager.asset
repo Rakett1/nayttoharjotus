@@ -9,6 +9,7 @@ TagManager:
   - mouseHole
   - Win
   - Ground
+  - mouseTrap
   layers:
   - Default
   - TransparentFX
