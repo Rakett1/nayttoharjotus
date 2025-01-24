@@ -77,6 +77,10 @@ public class Movement : MonoBehaviour
             Barrier.SetActive(false);
             Debug.Log("Went trough a hole");
         }
+        if (collision.tag == ("mouseTrap"))
+        {
+            speed = 1f;
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
