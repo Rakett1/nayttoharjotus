@@ -5,7 +5,10 @@ using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
-    public float Speed;
+    public float speed;
+    bool isSprinting;
+    public float walkSpeed = 5f;
+    public float sprintSpeed = 8f;
     public float JumpPower;
     public GameObject Enemy;
     public GameObject MouseHole;
@@ -21,6 +24,7 @@ public class Movement : MonoBehaviour
         WinScreen.SetActive(false);
         Time.timeScale = 1;
         rb = GetComponent<Rigidbody2D>();
+        speed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -28,12 +32,12 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * Speed);
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
             Debug.Log("'D'key pressed");
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * Speed);
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
             Debug.Log("'A'key pressed");
         }
         if (Input.GetKey(KeyCode.Space) && Grounded)
@@ -41,6 +45,16 @@ public class Movement : MonoBehaviour
             rb.AddForce(Vector3.up * JumpPower);
             Debug.Log("Jumped");
             Grounded = false;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = sprintSpeed;
+            isSprinting = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = walkSpeed;
+            isSprinting = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
